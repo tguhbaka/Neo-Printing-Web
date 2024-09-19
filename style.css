@@ -1,0 +1,698 @@
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+}
+
+/* Styling untuk kolom pencarian di bagian header */
+
+/* Top Header */
+.header-top {
+    position: relative; /* Memungkinkan penempatan absolut untuk elemen di dalamnya */
+    padding: 10px;
+}
+.search-form {
+    position: absolute;
+    right: 20px; /* Menempatkan kolom pencarian di sisi kanan */
+    top: 40px; /* Menurunkan posisi kolom pencarian */
+    width: 100%; /* Memastikan lebar form mengikuti kontainer */
+    max-width: 500px; /* Maksimum lebar form */
+    display: flex;
+    align-items: center;
+    background-color: #fff; /* Latar belakang putih untuk form */
+    padding: 5px;
+    border-radius: 25px; /* Membulatkan sudut form */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Efek shadow untuk form */
+    transition: all 0.3s ease-in-out; /* Tambahkan efek transisi */
+}
+
+.search-input {
+    flex: 1; /* Membuat input mengisi ruang yang tersedia */
+    padding: 12px; /* Meningkatkan padding untuk input */
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px 0 0 25px; /* Membulatkan sudut kiri */
+}
+
+.search-btn {
+    padding: 12px 20px; /* Meningkatkan padding pada tombol */
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 0 25px 25px 0; /* Membulatkan sudut kanan */
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.top-header {
+    background-color: #fff;
+    color: rgb(14, 11, 104);
+    padding: 10px 0;
+}
+
+.top-header h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.top-header .slogan {
+    font-size: 1.2rem; /* Ukuran font untuk slogan */
+    font-weight: normal;
+    font-style: italic; /* Menjadikan teks miring */
+    margin-top: -10px; /* Jarak antara header dan slogan */
+    color: #000000; /* Warna teks slogan */
+}
+
+.top-header .container {
+    display: flex;
+    flex-direction: column; /* Menyusun teks header dan slogan secara vertikal */
+    align-items: flex-start; /* Menyusun teks di kiri */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo .logo-img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.header-logo h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Menempatkan menu di tengah */
+}
+
+nav ul li {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: inline-block;
+    font-size: 1rem;
+    position: relative; /* Dibutuhkan untuk ::after */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #575757;
+    border-radius: 4px;
+    transform: scale(1.1); /* Efek membesar sedikit */
+}
+
+nav ul li a:hover::after {
+    width: 100%; /* Menampilkan garis bawah */
+}
+
+#menu {
+    display: none; /* Menu disembunyikan secara default */
+}
+
+#menu.show {
+    display: block; /* Menu akan tampil ketika class 'show' ditambahkan */
+}
+
+.menu-toggle {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+
+/* Hero Section */
+#hero {
+    width: 100%;
+    margin: 20px 0;
+    position: relative;
+    overflow: hidden; /* Agar gambar tidak meluber ke luar container */
+}
+.hero-slider {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Atur tinggi sesuai kebutuhan */
+    overflow: hidden;
+}
+
+.hero-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.hero-slide img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+#hero img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Tentang Kami */
+.about-header, .portfolio-header, .contact-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Tentang Kami, Portofolio, dan Kontak Kami Headers */
+.about-header h2, .portfolio-header h2, .contact-header h2 {
+    font-size: 2.5rem; /* Ukuran font diperbesar dari 2rem menjadi 2.5rem */
+    display: inline-block;
+    padding: 10px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.about-text {
+    flex: 1;
+    padding: 20px;
+}
+
+.about-text h2 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.about-text p {
+    margin-top: 10px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.about-image {
+    flex: 1;
+    padding: 20px;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Pilih Kami */
+.choose-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.choose-image {
+    flex: 1;
+    padding: 20px;
+}
+
+.choose-image img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.choose-text {
+    flex: 1;
+    padding: 20px;
+}
+
+.choose-text h2 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.choose-text p {
+    margin-top: 10px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+#choose-us {
+    background-color: #fff;
+    padding: 40px 20px;
+}
+
+.choose-us-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.choose-us-header h2 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.choose-us-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.choose-us-image {
+    flex: 1;
+    max-width: 50%;
+    padding: 10px;
+}
+
+.choose-us-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.choose-us-description {
+    flex: 1;
+    max-width: 55%;
+    padding: 10px;
+    margin-left: 20px;
+}
+
+.choose-us-description h3 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.choose-us-description p {
+    font-size: 1.125rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+
+/* Portofolio */
+.portfolio-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.portfolio-item {
+    flex: 1;
+    padding: 20px;
+    max-width: 600px;
+    text-align: center;
+    position: relative; /* Agar efek zoom tidak meluber */
+    overflow: hidden; /* Menghilangkan bagian gambar yang meluber */
+    transition: transform 0.3s ease; /* Efek transisi */
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease; /* Efek transisi */
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.1); /* Zoom in saat hover */
+}
+
+/* Menurunkan teks di bawah gambar */
+.portfolio-item h3 {
+    margin-top: 15px; /* Atur jarak atas sesuai kebutuhan */
+    font-size: 1.2rem;
+}
+
+.portfolio-item p {
+    margin-top: 10px; /* Atur jarak atas sesuai kebutuhan */
+    font-size: 1rem;
+}
+
+/* Kontak Kami */
+.contact-header {
+    text-align: center;
+    margin-bottom: 10px; /* Menambahkan jarak bawah untuk header */
+}
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.contact-image {
+    flex: 1;
+    padding: 20px;
+    position: relative;
+    overflow: hidden; /* Tambahkan ini untuk memastikan efek transisi bekerja dengan baik */
+}
+
+.contact-image img {
+    width: 100%;
+    border-radius: 8px;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Efek transisi pada transformasi dan opacity */
+    object-fit: cover; /* Agar gambar tetap proporsional dalam container */
+}
+
+.contact-image:hover img {
+    transform: scale(1.1); /* Efek zoom saat hover */
+    opacity: 0.9; /* Sedikit pengurangan opacity saat hover */
+}
+
+.contact-info {
+    flex: 1;
+    padding: 20px;
+}
+
+.contact-info h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.contact-info p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+}
+
+.footer-logo img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.footer-info p {
+    margin: 5px 0;
+}
+
+footer a {
+    text-decoration: none; /* Menghapus garis bawah */
+}
+
+.footer-socials {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-socials a {
+    color: white;
+    text-decoration: none;
+    margin-bottom: 5px;
+    font-size: 1rem; /* Menyesuaikan ukuran ikon */
+    transition: transform 0.3s ease, color 0.3s ease; /* Menambahkan transisi smooth */
+}
+
+/* Efek hover untuk media sosial */
+.footer-socials a:hover {
+    transform: scale(1.2); /* Memperbesar ikon saat hover */
+    color: #fdfbf6; /* Mengubah warna saat hover */
+}
+
+.footer-socials a i {
+    margin-right: 8px;
+}
+
+/* Branding Logos Section */
+.footer-brands {
+    background-color: #f4f4f4;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-brands-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.footer-brands-content img {
+    height: 60px; /* Ukuran tinggi logo, sesuaikan jika perlu */
+    margin: 10px;
+    object-fit: contain;
+    transition: transform 0.3s ease; /* Menambahkan efek transisi */
+}
+
+/* Efek hover untuk logo branding */
+.footer-brands-content img:hover {
+    transform: scale(1.1); /* Memperbesar logo saat hover */
+}
+
+/* Dukungan Kami Section */
+#support {
+    background-color: #fff;
+    padding: 40px 0;
+    text-align: center;
+}
+
+
+#support h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+#support p {
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+}
+
+
+/* Dukungan Section */
+#support h2 {
+    font-size: 36px; /* Atur ukuran font sesuai keinginan */
+    font-weight: 700; /* Menambahkan ketebalan teks */
+    text-align: center; /* Menyelaraskan teks ke tengah */
+    margin-bottom: 20px; /* Memberikan jarak di bawah judul */
+}
+
+.support-logos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px; /* Jarak antar logo */
+}
+
+.support-logos img {
+    width: 120px; /* Atur ukuran logo */
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: transform 0.3s ease; /* Efek transisi untuk hover */
+}
+
+.support-logos img:hover {
+    transform: scale(1.1); /* Zoom in saat hover */
+}
+
+
+/* Responsive */
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-logo h1 {
+        font-size: 1.5rem;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    nav ul {
+        display: none;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    nav ul li a {
+        font-size: 1.25rem;
+        padding: 10px;
+        display: block;
+    }
+
+    .contact-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .contact-info, .contact-image {
+        max-width: 100%;
+    }
+
+    .search-form {
+        position: relative;
+        right: 0;
+        top: 0;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .portfolio-item {
+        flex: 1 1 100%;
+        margin-bottom: 20px;
+    }
+}
+
+/* Responsive untuk pencarian */
+@media (max-width: 768px) {
+    .search-form {
+        position: relative;
+        right: 0;
+        top: 0;
+        width: 100%; /* Mengisi seluruh lebar layar */
+        margin-top: 10px;
+        padding: 5px;
+        max-width: 100%; /* Menghilangkan batas maksimum untuk lebar */
+        border-radius: 25px; /* Tetap membulatkan sudut */
+        box-shadow: none; /* Hilangkan bayangan untuk tampilan lebih sederhana */
+    }
+
+    .search-input {
+        width: 70%; /* Atur lebar input lebih kecil untuk layar kecil */
+        padding: 10px; /* Kurangi padding */
+        font-size: 1rem;
+    }
+
+    .search-btn {
+        width: 30%; /* Tombol akan mengisi sisa ruang */
+        padding: 10px; /* Kurangi padding */
+        font-size: 1rem;
+    }
+}
+
+/* Efek hover untuk animasi */
+.search-form:hover {
+    transform: scale(1.05); /* Efek memperbesar sedikit */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Bayangan lebih besar saat hover */
+    transition: all 0.3s ease-in-out; /* Efek transisi smooth */
+}
+
+
+/* Responsive untuk layout secara keseluruhan */
+@media (max-width: 480px) {
+    .search-input {
+        width: 65%; /* Lebar input sedikit lebih kecil di layar yang sangat kecil */
+    }
+
+    .search-btn {
+        width: 35%; /* Tombol menyesuaikan sisa ruang */
+    }
+}
+
+
